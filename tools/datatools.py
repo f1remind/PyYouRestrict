@@ -4,9 +4,9 @@ def most_banned_tags(videos):
     tags = {}
     # accumulate
     for video in videos:
-        videotags = videos[video]['tags']
+        videotags = video['tags']
         for tag in videotags:
-            restricted = videos[video]['restricted']
+            restricted = video['restricted']
             if not tag in tags:
                 tags[tag] = [0, 0]
             if restricted:
