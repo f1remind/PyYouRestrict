@@ -57,7 +57,7 @@ def get_channel_videos(channel_link, restricted = False):
         videos.append([video.get_text(), video.get('href')])
     return videos
 
-def get_video_info(videolink):
+def get_video_info(videolink, case_insensitive = True):
     if not youtube in videolink: videolink = youtube + videolink
     tags = []
     title = ''
@@ -68,15 +68,23 @@ def get_video_info(videolink):
     soup = bs(site.content, 'html.parser')
     for tag in soup.select('meta'):
         if tag.get('property') == 'og:video:tag':
-            tags.append(tag.get('content').upper())
+            tagvalue = tag.get('content')
+            if case_insensitive: tagvalue = tagvalue.upper()
+            tags.append(tagvalue)
         if tag.get('property') == 'og:title':
-            title = tag.get('content').upper()
+            if case_insensitive:
+                title = tag.get('content').upper()
+            else:
+                title = tag.get('content')
         if tag.get('itemprop') == 'duration':
             length = tag.get('content').upper()
             length = length[2:-1].split('M')
             length = int(length[0])*60 + int(length[1])
         if tag.get('name') == 'description':
-            description = tag.get('content').upper()
+            if case_insensitive:
+                description = tag.get('content').upper()
+            else:
+                description = tag.get('content')
     return title, tags, description, length
 
 def get_channel_info(channellink):

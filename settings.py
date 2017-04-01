@@ -1,7 +1,16 @@
+#Amount of maximum parallel downloads
+max_downloads = 5
+
+#Characters separating the values when printing the results
+separator = ';;;'
+
+#Should upper-/lowercase matter? I think not. But disagree if you like.
+case_insensitive = True
+
 channels = [
     #"Anti-Feminist" / "Sceptics (tm)" / Conservatives / Atheists
     ['TL;DR', 'https://www.youtube.com/channel/UCMIj-wEiKIcGAcLoBO2ciQQ'],
-#];debug=[
+#];debug=[ #removing the leading '#' disables all following channels
     ['Gryffix', 'https://www.youtube.com/user/gryffixchannel'],
     ['thunderf00t', 'https://www.youtube.com/channel/UCmb8hO2ilV9vRa8cilis88A'],
     ['Sargon of Akkad', 'https://www.youtube.com/user/SargonofAkkad100'],
@@ -25,6 +34,7 @@ channels = [
     ['The Best Fails', 'https://www.youtube.com/channel/UCuunebfqIi8uCzAs_fO1D6Q'],
     ['3Blue1Brown', 'https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw'],
     ['exurb1a', 'https://www.youtube.com/channel/UCimiUgDLbi6P17BdaCZpVbg'],
+    ['Maxwell Ren', 'https://www.youtube.com/channel/UCNgYZEw63DoFxqPjwuR7PYA'],
     #Weird stuff
     ['David Firth', 'https://www.youtube.com/channel/UCLhtZqdkjshgq8TqwIjMdCQ'],
     ['Gazi Kodzo', 'https://www.youtube.com/user/smiletone'],

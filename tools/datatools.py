@@ -1,5 +1,5 @@
 def most_banned_tags(videos):
-    minimum_amount = 10
+    minimum_amount = 1
 
     tags = {}
     # accumulate
