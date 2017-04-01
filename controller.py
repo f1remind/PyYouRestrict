@@ -54,13 +54,14 @@ def get_videos_from_channels(channels):
         print('Getting video information')
         restricted_videos = channel_data[channel_name][2]
         def download_video_information(video, restricted, output):
-            titl, tags, desc, dur = youtubetools.get_video_info(video[1], settings.case_insensitive)
+            titl, tags, desc, dur, captions = youtubetools.get_video_info(video[1], settings.case_insensitive)
             output.append({
                 'title': titl,
                 'description': desc,
                 'tags': tags,
                 'duration': dur,
-                'restricted': restricted
+                'restricted': restricted,
+                'captions': captions
             })
             #print("Done getting", video)
         threadpool = []

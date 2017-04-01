@@ -1,5 +1,8 @@
 import json
 import requests
+import urllib
+import html
+import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup as bs
 
 youtube = 'https://www.youtube.com'
@@ -62,6 +65,7 @@ def get_video_info(videolink, case_insensitive = True):
     tags = []
     title = ''
     description = ''
+    transcript = ''
     length = -1
 
     site = requests.get(videolink)
@@ -85,6 +89,18 @@ def get_video_info(videolink, case_insensitive = True):
                 description = tag.get('content').upper()
             else:
                 description = tag.get('content')
+    
+    urls = site.text.split('"caption_tracks":"')[-1].split('"')[0]
+    urls = urls.split(',')
+    urls = [json.loads('{"a": "' + url + '"}')['a'] for url in urls]
+    urls = [urllib.parse.unquote(url) for url in urls]
+    urls = [url.split('&u=', 1)[1] for url in urls]
+    urls = [url.split('&v=.')[0] for url in urls]
+
+    site = requests.get(urls[0])
+    tree = ET.XML(site.text)
+    for text in tree.itertext(): transcript += html.unescape(text) + '\n'
+
     return title, tags, description, length
 
 def get_channel_info(channellink):
